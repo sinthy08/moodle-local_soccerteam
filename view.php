@@ -14,7 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * View page for local_soccerteam plugin.
+ *
+ * @package   local_soccerteam
+ * @copyright 2025 Umme Kawser Sinthia
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 require('../../config.php');
+
+global $PAGE, $OUTPUT;
 
 $courseid = required_param('id', PARAM_INT);
 require_login($courseid);
@@ -31,5 +41,5 @@ $PAGE->set_heading(get_string('pluginname', 'local_soccerteam'));
 $PAGE->requires->js_call_amd('local_soccerteam/form', 'init', [$courseid]);
 
 echo $OUTPUT->header();
-echo html_writer::div('', 'soccerteam-form-container', ['id' => 'formcontainer']); // AJAX form will be inserted here
+echo html_writer::div('', 'soccerteam-form-container', ['id' => 'formcontainer']);
 echo $OUTPUT->footer();

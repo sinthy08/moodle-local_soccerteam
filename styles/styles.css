@@ -1,0 +1,22 @@
+/* Soccer Team Form Styles */
+
+#soccerteam {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+#soccerteam select {
+    max-width: 200px;
+}
+
+#soccerteam #jerseynumber {
+    max-width: 80px;
+}
+
+.required-indicator {
+    font-size: 0.7rem;
+} 

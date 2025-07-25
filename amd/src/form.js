@@ -2,36 +2,26 @@ define(['jquery', 'core/ajax', 'core/templates', 'core/notification'],
 function($, Ajax, Templates, Notification) {
     return {
         init: function(courseid) {
-            // Valid positions list
             const validPositions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
-
-            // Load form data and render template
+            // Load form data and render template.
             Ajax.call([{
                 methodname: 'local_soccerteam_get_form_data',
                 args: {courseid: courseid},
                 done: function(data) {
-                    // Add courseid to the data
                     data.courseid = courseid;
-
-                    // Render the form
-                    Templates.render('local_soccerteam/form', data).then(function(html) {
+                    Templates.render('local_soccerteam/form', data).then(function(html){
                         $('#formcontainer').html(html);
-
-                        // Handle form submission
                         $('#soccerteam-form').on('submit', function(e) {
                             e.preventDefault();
-
                             var userid = $('#userid').val();
                             var position = $('#position').val();
                             var jerseynumber = $('#jerseynumber').val();
-
-                            // Basic validation
                             if (!userid || !position || !jerseynumber) {
                                 Notification.alert('', 'Please fill in all required fields');
                                 return;
                             }
 
-                            // Validate position
+                            // Validate position.
                             if (!validPositions.includes(position)) {
                                 $('#status-message')
                                     .removeClass('alert-success alert-info')
@@ -40,15 +30,13 @@ function($, Ajax, Templates, Notification) {
                                     .show();
                                 return;
                             }
-
-                            // Show loading indicator
                             $('#status-message')
                                 .removeClass('alert-danger alert-success')
                                 .addClass('alert-info')
                                 .text('Saving data...')
                                 .show();
 
-                            // Check for duplicate jersey number
+                            // Check for duplicate jersey number.
                             Ajax.call([{
                                 methodname: 'local_soccerteam_check_jersey_number',
                                 args: {
