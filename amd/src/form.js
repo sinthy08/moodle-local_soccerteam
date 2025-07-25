@@ -83,7 +83,6 @@ function($, Ajax, Templates, Notification) {
                         // Handle cancel button
                         $('#cancel-btn').on('click', function() {
                             $('#soccerteam-form')[0].reset();
-                            $('.position-description').text('');
                             $('#status-message').hide();
                         });
                     }).fail(function(error) {
@@ -122,7 +121,6 @@ function($, Ajax, Templates, Notification) {
                         // Reset form after 2 seconds
                         setTimeout(function() {
                             $('#soccerteam-form')[0].reset();
-                            $('.position-description').text('');
                             $('#status-message').hide();
                         }, 2000);
                     },
