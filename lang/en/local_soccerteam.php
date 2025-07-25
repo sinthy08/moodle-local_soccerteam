@@ -25,3 +25,13 @@
 $string['pluginname'] = 'Soccer team';
 $string['pluginname_help'] = 'Introduce soccer team management into the course management system';
 $string['privacy:metadata'] = 'The Soccer Team plugin stores information about students\' jersey numbers and field positions within a course.';
+$string['soccerteam'] = 'Soccer Team';
+$string['player'] = 'Player';
+$string['position'] = 'Position';
+$string['jerseynumber'] = 'Jersey Number';
+$string['submit'] = 'Save Player';
+$string['cancel'] = 'Cancel';
+$string['playersaved'] = 'Player information saved successfully';
+$string['jerseynumberexists'] = 'This jersey number is already taken by another player';
+$string['playerexists'] = 'This player is already on the team';
+$string['saveerror'] = 'Error saving player information';

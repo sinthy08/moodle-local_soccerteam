@@ -15,27 +15,32 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Soccer team external functions and service definitions.
+ * Soccer team web service definitions
  *
  * @package    local_soccerteam
- * @category   external
  * @copyright  2025 Umme Kawser Sinthia
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @since      Moodle 3.0
  */
 
 defined('MOODLE_INTERNAL') || die;
 
 $functions = array(
-    $functions = array(
-        'local_soccerteam_get_form_data' => array(
-            'classname'     => 'local_soccerteam_external',
-            'methodname'    => 'local_soccerteam_get_form_data',
-            'classpath'     => 'local\soccerteam\classes\external.php',
-            'description'   => 'Return form fields for soccer team form',
-            'type'          => 'read',
-            'ajax'          => true,
-            'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
-        )
+    'local_soccerteam_get_form_data' => array(
+        'classname'     => 'local_soccerteam_external',
+        'methodname'    => 'local_soccerteam_get_form_data',
+        'classpath'     => 'local/soccerteam/classes/external.php',
+        'description'   => 'Return form fields for soccer team form',
+        'type'          => 'read',
+        'ajax'          => true,
+        'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
+    ),
+    'local_soccerteam_save_player_data' => array(
+        'classname'     => 'local_soccerteam_external',
+        'methodname'    => 'local_soccerteam_save_player_data',
+        'classpath'     => 'local/soccerteam/classes/external.php',
+        'description'   => 'Save player data to the database',
+        'type'          => 'write',
+        'ajax'          => true,
+        'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
     )
 );

@@ -40,7 +40,6 @@ function local_soccerteam_extend_navigation_course($navigation, $course, $contex
         return;
     }
 
-    // Add a link to the course secondary navigation.
     $url = new moodle_url('/local/soccerteam/view.php', ['id' => $course->id]);
     $node = navigation_node::create(
         get_string('pluginname', 'local_soccerteam'),
