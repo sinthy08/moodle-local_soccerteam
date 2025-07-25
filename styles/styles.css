@@ -6,17 +6,54 @@
     background-color: white;
     padding: 1.5rem;
     border-radius: 0.25rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-#soccerteam select {
-    max-width: 200px;
+#soccerteam h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+#soccerteam .form-group {
+    margin-bottom: 1rem;
+}
+
+#soccerteam label {
+    font-weight: 400;
+}
+
+#soccerteam .custom-select {
+    width: auto;
+    min-width: 200px;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
 }
 
 #soccerteam #jerseynumber {
-    max-width: 80px;
+    min-width: 80px;
 }
 
-.required-indicator {
-    font-size: 0.7rem;
+#soccerteam .btn-primary {
+    background-color: #0f6cbf;
+    border-color: #0f6cbf;
+}
+
+#soccerteam .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    margin-left: 0.5rem;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    #soccerteam .col-md-3,
+    #soccerteam .col-md-9 {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    #soccerteam .offset-md-3 {
+        margin-left: 0;
+    }
 } 

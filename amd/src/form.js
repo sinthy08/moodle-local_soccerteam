@@ -11,6 +11,7 @@ function($, Ajax, Templates, Notification) {
                     data.courseid = courseid;
                     Templates.render('local_soccerteam/form', data).then(function(html){
                         $('#formcontainer').html(html);
+
                         $('#soccerteam-form').on('submit', function(e) {
                             e.preventDefault();
                             var userid = $('#userid').val();
