@@ -33,6 +33,7 @@ $string['pluginname'] = 'Soccer team';
 $string['pluginname_help'] = 'Introduce soccer team management into the course management system';
 $string['position'] = 'Position';
 $string['privacy:metadata'] = 'The Soccer Team plugin stores information about students\' jersey numbers and field positions within a course.';
+$string['required'] = 'Required';
 $string['saveerror'] = 'Error saving player information';
 $string['soccerteam'] = 'Soccer Team';
 $string['submit'] = 'Save';

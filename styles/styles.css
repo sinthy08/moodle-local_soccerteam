@@ -28,21 +28,42 @@
     background-color: white;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
+    margin-left: 5px;
 }
 
 #soccerteam #jerseynumber {
     min-width: 80px;
 }
 
-#soccerteam .btn-primary {
-    background-color: #0f6cbf;
-    border-color: #0f6cbf;
+/*#soccerteam .btn-primary {*/
+/*    background-color: #0f6cbf;*/
+/*    border-color: #0f6cbf;*/
+/*}*/
+
+/*#soccerteam .btn-secondary {*/
+/*    background-color: #6c757d;*/
+/*    border-color: #6c757d;*/
+/*    margin-left: 0.5rem !important;*/
+/*}*/
+
+#soccerteam .req-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0;
 }
 
-#soccerteam .btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    margin-left: 0.5rem;
+#soccerteam .form-inline {
+    display: flex;
+    align-items: center;
+}
+
+#soccerteam .offset-md-3 {
+    margin-left: 25% !important;
+}
+
+#soccerteam .col-md-9 {
+    display: flex;
+    align-items: center;
 }
 
 /* Responsive adjustments for small screens */
@@ -54,6 +75,6 @@
     }
     
     #soccerteam .offset-md-3 {
-        margin-left: 0;
+        margin-left: 0 !important;
     }
 } 
