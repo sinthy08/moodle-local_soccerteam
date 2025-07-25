@@ -37,7 +37,7 @@
 <div class="container mt-4" id="soccerteam">
     <h3>{{#str}}soccerteam, local_soccerteam{{/str}}</h3>
 
-    <form id="soccerteam-form" class="form-inline">
+    <form id="soccerteam-form">
         <input type="hidden" id="courseid" name="courseid" value="{{courseid}}">
         
         <!-- Player -->
@@ -57,9 +57,10 @@
             <select id="position" name="position" class="form-select" required>
                 <option value="">{{#str}}choosedots{{/str}}</option>
                 {{#positionselector}}
-                    <option value="{{value}}">{{label}}</option>
+                    <option value="{{value}}" title="{{description}}">{{label}}</option>
                 {{/positionselector}}
             </select>
+            <small class="form-text text-muted position-description"></small>
         </div>
 
         <!-- Jersey Number -->
@@ -74,7 +75,7 @@
         </div>
 
         <!-- Buttons -->
-        <div class="mt-3">
+        <div class="mt-4">
             <button type="submit" class="btn btn-primary me-2">{{#str}}submit, local_soccerteam{{/str}}</button>
             <button type="button" class="btn btn-secondary" id="cancel-btn">{{#str}}cancel, local_soccerteam{{/str}}</button>
         </div>

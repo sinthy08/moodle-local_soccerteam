@@ -34,6 +34,15 @@ $functions = array(
         'ajax'          => true,
         'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
     ),
+    'local_soccerteam_check_jersey_number' => array(
+        'classname'     => 'local_soccerteam_external',
+        'methodname'    => 'local_soccerteam_check_jersey_number',
+        'classpath'     => 'local/soccerteam/classes/external.php',
+        'description'   => 'Check if a jersey number is already taken by another player',
+        'type'          => 'read',
+        'ajax'          => true,
+        'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
+    ),
     'local_soccerteam_save_player_data' => array(
         'classname'     => 'local_soccerteam_external',
         'methodname'    => 'local_soccerteam_save_player_data',
