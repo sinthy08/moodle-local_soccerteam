@@ -34,53 +34,70 @@
     }
 }}
 
-<div class="container mt-4" id="soccerteam">
-    <h3>{{#str}}soccerteam, local_soccerteam{{/str}}</h3>
+<div class="mform" id="soccerteam">
+    <div class="fcontainer">
+        <br>
+        <form id="soccerteam-form" class="mform">
+            <input type="hidden" id="courseid" name="courseid" value="{{courseid}}">
+            
+            <div class="form-group row fitem">
+                <div class="col-md-3">
+                    <label for="userid">{{#str}} player, local_soccerteam {{/str}}</label>
+                </div>
+                <div class="col-md-9 form-inline felement">
+                    <span class="text-danger req-icon">{{#pix}}req, core {{/pix}}</span>
+                    <select id="userid" name="userid" class="custom-select" required>
+                        <option value="">{{#str}}choosedots{{/str}}</option>
+                        {{#userselector}}
+                            <option value="{{value}}">{{label}}</option>
+                        {{/userselector}}
+                    </select>
+                </div>
+            </div>
 
-    <form id="soccerteam-form">
-        <input type="hidden" id="courseid" name="courseid" value="{{courseid}}">
-        
-        <!-- Player -->
-        <div class="form-group mb-3">
-            <label for="userid" class="form-label">{{#str}}player, local_soccerteam{{/str}}</label>
-            <select id="userid" name="userid" class="form-select" required>
-                <option value="">{{#str}}choosedots{{/str}}</option>
-                {{#userselector}}
-                    <option value="{{value}}">{{label}}</option>
-                {{/userselector}}
-            </select>
-        </div>
+            <div class="form-group row fitem">
+                <div class="col-md-3">
+                    <label for="position">{{#str}}position, local_soccerteam{{/str}}</label>
+                </div>
+                <div class="col-md-9 form-inline felement">
+                    <span class="text-danger req-icon">{{#pix}}req, core {{/pix}}</span>
+                    <select id="position" name="position" class="custom-select" required>
+                        <option value="">{{#str}}choosedots{{/str}}</option>
+                        {{#positionselector}}
+                            <option value="{{value}}" title="{{description}}">{{label}}</option>
+                        {{/positionselector}}
+                    </select>
+                </div>
+            </div>
 
-        <!-- Position -->
-        <div class="form-group mb-3">
-            <label for="position" class="form-label">{{#str}}position, local_soccerteam{{/str}}</label>
-            <select id="position" name="position" class="form-select" required>
-                <option value="">{{#str}}choosedots{{/str}}</option>
-                {{#positionselector}}
-                    <option value="{{value}}" title="{{description}}">{{label}}</option>
-                {{/positionselector}}
-            </select>
-            <small class="form-text text-muted position-description"></small>
-        </div>
+            <div class="form-group row fitem">
+                <div class="col-md-3">
+                    <label for="jerseynumber">{{#str}} jerseynumber, local_soccerteam{{/str}}</label>
+                </div>
+                <div class="col-md-9 form-inline felement">
+                    <span class="text-danger req-icon">{{#pix}}req, core {{/pix}}</span>
+                    <select id="jerseynumber" name="jerseynumber" class="custom-select" required>
+                        <option value="">{{#str}}choosedots{{/str}}</option>
+                        {{#numberselector}}
+                            <option value="{{value}}">{{label}}</option>
+                        {{/numberselector}}
+                    </select>
+                </div>
+            </div>
 
-        <!-- Jersey Number -->
-        <div class="form-group mb-3">
-            <label for="jerseynumber" class="form-label">{{#str}}jerseynumber, local_soccerteam{{/str}}</label>
-            <select id="jerseynumber" name="jerseynumber" class="form-select" required>
-                <option value="">{{#str}}choosedots{{/str}}</option>
-                {{#numberselector}}
-                    <option value="{{value}}">{{label}}</option>
-                {{/numberselector}}
-            </select>
-        </div>
-
-        <!-- Buttons -->
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary me-2">{{#str}}submit, local_soccerteam{{/str}}</button>
-            <button type="button" class="btn btn-secondary" id="cancel-btn">{{#str}}cancel, local_soccerteam{{/str}}</button>
-        </div>
-        
-        <!-- Status message -->
-        <div id="status-message" class="alert mt-3" style="display: none;"></div>
-    </form>
+            <div class="form-group row">
+                <div class="col-md-9 offset-md-3 form-inline">
+                    <button type="submit" class="btn btn-primary">{{#str}} submit, local_soccerteam {{/str}}</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">{{#str}} cancel, local_soccerteam {{/str}}</button>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <div id="status-message" class="alert mt-3" style="display: none;"></div>
+                    <span class="text-danger">{{#pix}}req, core, {{/pix}} {{#str}} required, local_soccerteam {{/str}}</span>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

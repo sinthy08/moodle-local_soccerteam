@@ -24,32 +24,32 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$functions = array(
-    'local_soccerteam_get_form_data' => array(
+$functions = [
+    'local_soccerteam_get_form_data' => [
         'classname'     => 'local_soccerteam_external',
         'methodname'    => 'local_soccerteam_get_form_data',
         'classpath'     => 'local/soccerteam/classes/external.php',
         'description'   => 'Return form fields for soccer team form',
         'type'          => 'read',
         'ajax'          => true,
-        'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
-    ),
-    'local_soccerteam_check_jersey_number' => array(
+        'services'      => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
+    'local_soccerteam_check_jersey_number' => [
         'classname'     => 'local_soccerteam_external',
         'methodname'    => 'local_soccerteam_check_jersey_number',
         'classpath'     => 'local/soccerteam/classes/external.php',
         'description'   => 'Check if a jersey number is already taken by another player',
         'type'          => 'read',
         'ajax'          => true,
-        'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
-    ),
-    'local_soccerteam_save_player_data' => array(
+        'services'      => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
+    'local_soccerteam_save_player_data' => [
         'classname'     => 'local_soccerteam_external',
         'methodname'    => 'local_soccerteam_save_player_data',
         'classpath'     => 'local/soccerteam/classes/external.php',
         'description'   => 'Save player data to the database',
         'type'          => 'write',
         'ajax'          => true,
-        'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
-    )
-);
+        'services'      => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
+];

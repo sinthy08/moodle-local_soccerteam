@@ -1,0 +1,80 @@
+/* Soccer Team Form Styles */
+
+#soccerteam {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.25rem;
+}
+
+#soccerteam h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+#soccerteam .form-group {
+    margin-bottom: 1rem;
+}
+
+#soccerteam label {
+    font-weight: 400;
+}
+
+#soccerteam .custom-select {
+    width: auto;
+    min-width: 200px;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-left: 5px;
+}
+
+#soccerteam #jerseynumber {
+    min-width: 80px;
+}
+
+/*#soccerteam .btn-primary {*/
+/*    background-color: #0f6cbf;*/
+/*    border-color: #0f6cbf;*/
+/*}*/
+
+/*#soccerteam .btn-secondary {*/
+/*    background-color: #6c757d;*/
+/*    border-color: #6c757d;*/
+/*    margin-left: 0.5rem !important;*/
+/*}*/
+
+#soccerteam .req-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0;
+}
+
+#soccerteam .form-inline {
+    display: flex;
+    align-items: center;
+}
+
+#soccerteam .offset-md-3 {
+    margin-left: 25% !important;
+}
+
+#soccerteam .col-md-9 {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    #soccerteam .col-md-3,
+    #soccerteam .col-md-9 {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    #soccerteam .offset-md-3 {
+        margin-left: 0 !important;
+    }
+} 

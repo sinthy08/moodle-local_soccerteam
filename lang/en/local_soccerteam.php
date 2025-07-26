@@ -22,17 +22,25 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['cancel'] = 'Cancel';
+$string['invalidposition'] = 'Invalid position selected. Please select a valid position.';
+$string['jerseynumber'] = 'Jersey Number';
+$string['jerseynumberexists'] = 'This jersey number is already taken by another player';
+$string['player'] = 'Player';
+$string['playerexists'] = 'This player is already on the team';
+$string['playersaved'] = 'Player information saved successfully';
 $string['pluginname'] = 'Soccer team';
 $string['pluginname_help'] = 'Introduce soccer team management into the course management system';
-$string['privacy:metadata'] = 'The Soccer Team plugin stores information about students\' jersey numbers and field positions within a course.';
-$string['soccerteam'] = 'Soccer Team';
-$string['player'] = 'Player';
 $string['position'] = 'Position';
-$string['jerseynumber'] = 'Jersey Number';
-$string['submit'] = 'Save';
-$string['cancel'] = 'Cancel';
-$string['playersaved'] = 'Player information saved successfully';
-$string['jerseynumberexists'] = 'This jersey number is already taken by another player';
-$string['playerexists'] = 'This player is already on the team';
+$string['privacy:metadata'] = 'The Soccer Team plugin stores information about students\' jersey numbers and field positions within a course.';
+$string['privacy:metadata:local_soccerteam'] = 'Information about soccer team players in a course';
+$string['privacy:metadata:local_soccerteam:courseid'] = 'The ID of the course';
+$string['privacy:metadata:local_soccerteam:userid'] = 'The ID of the user';
+$string['privacy:metadata:local_soccerteam:position'] = 'The player\'s position on the field';
+$string['privacy:metadata:local_soccerteam:jerseynumber'] = 'The player\'s jersey number';
+$string['privacy:metadata:local_soccerteam:timecreated'] = 'The time when the player was added to the team';
+$string['privacy:metadata:local_soccerteam:timemodified'] = 'The time when the player information was last modified';
+$string['required'] = 'Required';
 $string['saveerror'] = 'Error saving player information';
-$string['invalidposition'] = 'Invalid position selected. Please select a valid position.';
+$string['soccerteam'] = 'Soccer Team';
+$string['submit'] = 'Save';
