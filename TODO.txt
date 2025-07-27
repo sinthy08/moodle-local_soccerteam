@@ -1,0 +1,70 @@
+Time Taken:
+-------------
+Total Time Spent: 6 hours
+
+Note: Although the challenge advised not to exceed 4 hours, I implemented all the mentioned features to showcase a complete and working plugin with clean, documented code and adherence to Moodle best practices.
+
+Implemented Features:
+-----------------------
+1. Navigation Integration
+   - Added "Soccer Team" menu in secondary course navigation.
+   - Visibility restricted to users with teacher/manager roles.
+   - Menu redirects to the soccer team management page of the specific course with Ajax call.
+
+2. Administration Form
+   - Form is rendered dynamically using Mustache templates.
+   - Form loaded via AJAX for better UX.
+
+3. Dynamic Form Fields
+   - User Selector:
+     - AJAX-powered dropdown listing all enrolled students in the course.
+   - Position Selector:
+     - Dropdown containing standard soccer field positions (Goalkeeper, Defender, Midfielder, Forward).
+     - Descriptions added as tooltips.
+   - Jersey Number Selector:
+     - Number input with validation to accept only integers from 1 to 25.
+
+4. Form Validation
+   - Ensures unique jersey number per student per course.
+   - Validates correct field positions.
+   - Displays clear error messages for any validation failures.
+
+5. Save Functionality
+   - AJAX-based "Save" and "Cancel" buttons.
+   - On save, data is stored in the database and success message is shown.
+   - On cancel, the form data will be cleaned.
+
+6. Database Integration
+   - Created a custom table for storing team assignments.
+   - Used Moodle’s database API for insert/update operations.
+   - Added `install.xml` and upgrade scripts.
+
+7. Code Standards & Security
+   - Followed Moodle coding guidelines.
+   - Used Moodle forms and database APIs securely.
+   - Checked capabilities to restrict access to team management page and actions.
+
+8. Testing
+   - Added unit testing code for the plugin
+
+9. README Documentation
+   - Added installation/configuration instructions
+   - Described plugin features and limitations
+
+
+Partially Implemented or Pending:
+----------------------------------
+. Conceptual Features (Not Implemented but Planned)
+   - Edit/Delete assignment functionality via AJAX.
+   - View-only mode for students to see team listing.
+   - Export team data to CSV/PDF.
+
+Next Steps (If continued):
+---------------------------
+- Edit/Delete assignment functionality via AJAX.
+- View-only mode for students to see team listing.
+- Export team data to CSV/PDF.
+- Add full user documentation in README.
+- Add AJAX form for editing/deleting existing assignments.
+- Enable team view for students with limited permissions.
+- Optimize UI for mobile screens.
