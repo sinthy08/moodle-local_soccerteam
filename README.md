@@ -52,6 +52,12 @@ Clicking on the navigation it'll lead you to the page where you can assign cours
 - submit
 - done!
 
+## Limitation
+- Students are not able to see their assigned jersey number or position.
+- Teachers or managers are not able to see the students with assigned or unassigned position and jersey number
+- Teacher or managers are not able to edit or delete students data
+- Students should be notified if their jersey number or position being changed
+
 
 ## License 
 
