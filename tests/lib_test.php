@@ -37,7 +37,7 @@ global $CFG;
  * @copyright  2025 Umme Kawser Sinthia
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class lib_test extends \advanced_testcase {
+final class lib_test extends \advanced_testcase {
 
     /**
      * Set up for tests
@@ -48,6 +48,7 @@ class lib_test extends \advanced_testcase {
 
     /**
      * Test the navigation extension function
+     * @covers :: navigation extension function
      * @runInSeparateProcess
      */
     public function test_extend_navigation_course(): void {
@@ -63,31 +64,17 @@ class lib_test extends \advanced_testcase {
         $roleid = $this->getDataGenerator()->create_role();
         assign_capability('moodle/course:update', CAP_ALLOW, $roleid, $context);
         role_assign($roleid, $user->id, $context);
-        
-        // Set the user.
         $this->setUser($user);
-        
-        // Create a mock navigation node.
         $navigation = $this->createMock(\navigation_node::class);
-        
-        // Set up expectations for the add_node method to be called once.
         $navigation->expects($this->once())
             ->method('add_node')
             ->with($this->isInstanceOf(\navigation_node::class));
-        
-        // Call the function.
         local_soccerteam_extend_navigation_course($navigation, $course, $context);
-        
-        // Now test with a user who doesn't have the capability.
         $user2 = $this->getDataGenerator()->create_user();
         $this->setUser($user2);
-        
-        // Create a new mock that should NOT have add_node called.
         $navigation2 = $this->createMock(\navigation_node::class);
         $navigation2->expects($this->never())
             ->method('add_node');
-        
-        // Call the function again.
         local_soccerteam_extend_navigation_course($navigation2, $course, $context);
     }
-} 
+}

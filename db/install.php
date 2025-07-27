@@ -15,15 +15,25 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Installation script for local_soccerteam plugin
  *
- * @package   local_soccerteam
- * @copyright 2025 Umme Kawser Sinthia
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_soccerteam
+ * @copyright  2023 Your Name <your.email@example.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2025072514;         // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2024041600;         // Requires this Moodle version.
-$plugin->component = 'local_soccerteam'; // Full name of the plugin (used for diagnostics).
+/**
+ * Function to perform any install actions for the plugin.
+ *
+ * @return bool
+ */
+function xmldb_local_soccerteam_install() {
+    global $DB;
+    // Ensure capabilities are set up properly.
+    $result = true;
+    // Refresh capabilities.
+    $context = context_system::instance();
+    $result = $result && capabilities_refresh($context);
+    return $result;
+}

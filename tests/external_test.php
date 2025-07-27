@@ -39,7 +39,7 @@ require_once($CFG->dirroot . '/webservice/tests/helpers.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @coversDefaultClass \local_soccerteam_external
  */
-class external_test extends \externallib_advanced_testcase {
+final class external_test extends \externallib_advanced_testcase {
 
     /**
      * Set up for tests
@@ -59,34 +59,27 @@ class external_test extends \externallib_advanced_testcase {
 
         // Create a course.
         $course = $this->getDataGenerator()->create_course();
-        
         // Create some users and enroll them in the course.
         $user1 = $this->getDataGenerator()->create_user(['firstname' => 'User', 'lastname' => 'One']);
         $user2 = $this->getDataGenerator()->create_user(['firstname' => 'User', 'lastname' => 'Two']);
-        
         $studentrole = $DB->get_record('role', ['shortname' => 'student']);
         $this->getDataGenerator()->enrol_user($user1->id, $course->id, $studentrole->id);
         $this->getDataGenerator()->enrol_user($user2->id, $course->id, $studentrole->id);
-        
         // Set current user as admin.
         $this->setAdminUser();
-        
         // Call the external function.
         $result = \local_soccerteam_external::local_soccerteam_get_form_data($course->id);
         $result = \external_api::clean_returnvalue(
             \local_soccerteam_external::local_soccerteam_get_form_data_returns(),
             $result
         );
-        
         // Verify the results.
         $this->assertIsArray($result);
         $this->assertArrayHasKey('userselector', $result);
         $this->assertArrayHasKey('positionselector', $result);
         $this->assertArrayHasKey('numberselector', $result);
-        
         // Check that we have at least the two users we created.
         $this->assertGreaterThanOrEqual(2, count($result['userselector']));
-        
         // Check that we have all four positions.
         $this->assertEquals(4, count($result['positionselector']));
         $positions = array_column($result['positionselector'], 'value');
@@ -94,11 +87,9 @@ class external_test extends \externallib_advanced_testcase {
         $this->assertContains('Defender', $positions);
         $this->assertContains('Midfielder', $positions);
         $this->assertContains('Forward', $positions);
-        
         // Check that we have 25 jersey numbers.
         $this->assertEquals(25, count($result['numberselector']));
     }
-
     /**
      * Test checking jersey number
      * @covers ::local_soccerteam_check_jersey_number
@@ -110,14 +101,12 @@ class external_test extends \externallib_advanced_testcase {
 
         // Create a course.
         $course = $this->getDataGenerator()->create_course();
-        
         // Create some users.
         $user1 = $this->getDataGenerator()->create_user();
         $user2 = $this->getDataGenerator()->create_user();
-        
         // Set current user as admin.
         $this->setAdminUser();
-        
+
         // Insert a record for user1 with jersey number 10.
         $record = new \stdClass();
         $record->courseid = $course->id;
@@ -127,36 +116,30 @@ class external_test extends \externallib_advanced_testcase {
         $record->timecreated = time();
         $record->timemodified = time();
         $DB->insert_record('local_soccerteam', $record);
-        
         // Check if jersey number 10 is taken when checking for user2.
         $result = \local_soccerteam_external::local_soccerteam_check_jersey_number($course->id, $user2->id, 10);
         $result = \external_api::clean_returnvalue(
             \local_soccerteam_external::local_soccerteam_check_jersey_number_returns(),
             $result
         );
-        
         // Verify the result shows duplicate.
         $this->assertTrue($result['duplicate']);
         $this->assertNotEmpty($result['message']);
-        
         // Check if jersey number 11 is available.
         $result = \local_soccerteam_external::local_soccerteam_check_jersey_number($course->id, $user2->id, 11);
         $result = \external_api::clean_returnvalue(
             \local_soccerteam_external::local_soccerteam_check_jersey_number_returns(),
             $result
         );
-        
         // Verify the result shows no duplicate.
         $this->assertFalse($result['duplicate']);
         $this->assertEmpty($result['message']);
-        
         // Check if jersey number 10 is available for user1 (should be since they already have it).
         $result = \local_soccerteam_external::local_soccerteam_check_jersey_number($course->id, $user1->id, 10);
         $result = \external_api::clean_returnvalue(
             \local_soccerteam_external::local_soccerteam_check_jersey_number_returns(),
             $result
         );
-        
         // Verify the result shows no duplicate.
         $this->assertFalse($result['duplicate']);
         $this->assertEmpty($result['message']);
@@ -170,28 +153,22 @@ class external_test extends \externallib_advanced_testcase {
     public function test_save_player_data(): void {
         global $DB, $CFG;
         require_once($CFG->dirroot . '/local/soccerteam/classes/external.php');
-
         // Create a course.
         $course = $this->getDataGenerator()->create_course();
-        
         // Create a user.
         $user = $this->getDataGenerator()->create_user();
-        
         // Set current user as admin.
         $this->setAdminUser();
-        
         // Test creating a new player record.
         $result = \local_soccerteam_external::local_soccerteam_save_player_data($course->id, $user->id, 'Goalkeeper', 1);
         $result = \external_api::clean_returnvalue(
             \local_soccerteam_external::local_soccerteam_save_player_data_returns(),
             $result
         );
-        
         // Verify the result.
         $this->assertTrue($result['status']);
         $this->assertNotEmpty($result['message']);
         $this->assertGreaterThan(0, $result['id']);
-        
         // Check that the record was created in the database.
         $record = $DB->get_record('local_soccerteam', ['id' => $result['id']]);
         $this->assertNotFalse($record);
@@ -199,24 +176,21 @@ class external_test extends \externallib_advanced_testcase {
         $this->assertEquals($user->id, $record->userid);
         $this->assertEquals('Goalkeeper', $record->position);
         $this->assertEquals(1, $record->jerseynumber);
-        
+
         // Test updating an existing player record.
         $result = \local_soccerteam_external::local_soccerteam_save_player_data($course->id, $user->id, 'Defender', 2);
         $result = \external_api::clean_returnvalue(
             \local_soccerteam_external::local_soccerteam_save_player_data_returns(),
             $result
         );
-        
         // Verify the result.
         $this->assertTrue($result['status']);
         $this->assertNotEmpty($result['message']);
-        
         // Check that the record was updated in the database.
         $record = $DB->get_record('local_soccerteam', ['id' => $result['id']]);
         $this->assertNotFalse($record);
         $this->assertEquals('Defender', $record->position);
         $this->assertEquals(2, $record->jerseynumber);
-        
         // Test with an invalid position.
         try {
             \local_soccerteam_external::local_soccerteam_save_player_data($course->id, $user->id, 'InvalidPosition', 3);
@@ -224,10 +198,8 @@ class external_test extends \externallib_advanced_testcase {
         } catch (\moodle_exception $e) {
             $this->assertEquals('invalidposition', $e->errorcode);
         }
-        
         // Create another user.
         $user2 = $this->getDataGenerator()->create_user();
-        
         // Test with a duplicate jersey number.
         try {
             \local_soccerteam_external::local_soccerteam_save_player_data($course->id, $user2->id, 'Forward', 2);
@@ -236,4 +208,4 @@ class external_test extends \externallib_advanced_testcase {
             $this->assertEquals('jerseynumberexists', $e->errorcode);
         }
     }
-} 
+}

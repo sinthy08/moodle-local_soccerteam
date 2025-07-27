@@ -34,19 +34,19 @@
     }
 }}
 
-<div class="mform" id="soccerteam">
+<div class="soccerteam-form-container">
     <div class="fcontainer">
         <br>
         <form id="soccerteam-form" class="mform">
             <input type="hidden" id="courseid" name="courseid" value="{{courseid}}">
-            
+
             <div class="form-group row fitem">
                 <div class="col-md-3">
                     <label for="userid">{{#str}} player, local_soccerteam {{/str}}</label>
                 </div>
-                <div class="col-md-9 form-inline felement">
+                <div class="col-md-9 form-inline felement d-flex align-items-center gap-2">
                     <span class="text-danger req-icon">{{#pix}}req, core {{/pix}}</span>
-                    <select id="userid" name="userid" class="custom-select" required>
+                    <select id="userid" name="userid" class="custom-select selector-field" required>
                         <option value="">{{#str}}choosedots{{/str}}</option>
                         {{#userselector}}
                             <option value="{{value}}">{{label}}</option>
@@ -59,9 +59,9 @@
                 <div class="col-md-3">
                     <label for="position">{{#str}}position, local_soccerteam{{/str}}</label>
                 </div>
-                <div class="col-md-9 form-inline felement">
+                <div class="col-md-9 form-inline felement d-flex align-items-center gap-2">
                     <span class="text-danger req-icon">{{#pix}}req, core {{/pix}}</span>
-                    <select id="position" name="position" class="custom-select" required>
+                    <select id="position" name="position" class="custom-select selector-field" required>
                         <option value="">{{#str}}choosedots{{/str}}</option>
                         {{#positionselector}}
                             <option value="{{value}}" title="{{description}}">{{label}}</option>
@@ -74,9 +74,9 @@
                 <div class="col-md-3">
                     <label for="jerseynumber">{{#str}} jerseynumber, local_soccerteam{{/str}}</label>
                 </div>
-                <div class="col-md-9 form-inline felement">
+                <div class="col-md-9 form-inline felement d-flex align-items-center gap-2">
                     <span class="text-danger req-icon">{{#pix}}req, core {{/pix}}</span>
-                    <select id="jerseynumber" name="jerseynumber" class="custom-select" required>
+                    <select id="jerseynumber" name="jerseynumber" class="custom-select selector-field jersey-number" required>
                         <option value="">{{#str}}choosedots{{/str}}</option>
                         {{#numberselector}}
                             <option value="{{value}}">{{label}}</option>
@@ -85,17 +85,21 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <div class="col-md-9 offset-md-3 form-inline">
-                    <button type="submit" class="btn btn-primary">{{#str}} submit, local_soccerteam {{/str}}</button>
-                    <button type="button" class="btn btn-secondary" id="cancel-btn">{{#str}} cancel, local_soccerteam {{/str}}</button>
+            <div class="form-group row fitem">
+                <div class="col-md-3"></div>
+                <div class="col-md-9 form-inline felement d-flex align-items-center gap-2">
+                    <span class="text-danger req-icon" style="visibility: hidden;">{{#pix}}req, core {{/pix}}</span>
+                    <div>
+                        <button type="submit" class="btn btn-primary">{{#str}} submit, local_soccerteam {{/str}}</button>
+                        <button type="button" class="btn btn-secondary ml-2" id="cancel-btn">{{#str}} cancel, local_soccerteam {{/str}}</button>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <div class="col-md-12">
                     <div id="status-message" class="alert mt-3" style="display: none;"></div>
-                    <span class="text-danger">{{#pix}}req, core, {{/pix}} {{#str}} required, local_soccerteam {{/str}}</span>
+                    <span class="text-danger">{{#pix}}req, core {{/pix}} {{#str}} required, local_soccerteam {{/str}}</span>
                 </div>
             </div>
         </form>
