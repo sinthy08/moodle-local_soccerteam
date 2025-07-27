@@ -28,7 +28,7 @@ $capabilities = [
     'local/soccerteam:manage' => [
         'riskbitmask' => RISK_SPAM | RISK_PERSONAL,
         'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
+        'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => [
             'editingteacher' => CAP_ALLOW,
             'manager' => CAP_ALLOW,
@@ -36,7 +36,7 @@ $capabilities = [
     ],
     'local/soccerteam:view' => [
         'captype' => 'read',
-        'contextlevel' => CONTEXT_COURSE,
+        'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => [
             'editingteacher' => CAP_ALLOW,
             'teacher' => CAP_ALLOW,

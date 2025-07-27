@@ -31,6 +31,7 @@ require_login($courseid);
 
 $course = $DB->get_record('course', ['id' => $courseid], '*', MUST_EXIST);
 $context = context_course::instance($courseid);
+require_capability('local/soccerteam:view', $context);
 
 $PAGE->set_url(new moodle_url('/local/soccerteam/view.php', ['id' => $courseid]));
 $PAGE->set_context($context);
