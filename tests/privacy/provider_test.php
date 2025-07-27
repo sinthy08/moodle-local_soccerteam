@@ -25,8 +25,6 @@
 
 namespace local_soccerteam\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 use core_privacy\local\metadata\collection;
 use core_privacy\local\request\writer;
 use core_privacy\local\request\approved_contextlist;
@@ -41,25 +39,21 @@ use local_soccerteam\privacy\provider;
  * @copyright  2025 Umme Kawser Sinthia
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider_test extends \core_privacy\tests\provider_testcase {
+final class provider_test extends \core_privacy\tests\provider_testcase {
 
     /**
      * Test for provider::get_metadata()
+     * @covers :: provider test to get metadata
      * @runInSeparateProcess
      */
-    public function test_get_metadata() {
+    public function test_get_metadata(): void {
         $collection = new collection('local_soccerteam');
         $metadata = provider::get_metadata($collection);
-        
         // The collection should contain only one item.
         $this->assertCount(1, $metadata->get_collection());
-        
-        // Verify that the 'local_soccerteam' table is included in the metadata.
         $items = $metadata->get_collection();
         $table = reset($items);
         $this->assertEquals('local_soccerteam', $table->get_name());
-        
-        // Verify the privacy fields.
         $privacyfields = $table->get_privacy_fields();
         $this->assertArrayHasKey('courseid', $privacyfields);
         $this->assertArrayHasKey('userid', $privacyfields);
@@ -67,30 +61,24 @@ class provider_test extends \core_privacy\tests\provider_testcase {
         $this->assertArrayHasKey('jerseynumber', $privacyfields);
         $this->assertArrayHasKey('timecreated', $privacyfields);
         $this->assertArrayHasKey('timemodified', $privacyfields);
-        
-        // Verify the summary.
         $this->assertEquals('privacy:metadata:local_soccerteam', $table->get_summary());
     }
 
     /**
      * Test for provider::get_contexts_for_userid()
+     * @covers :: context for userid
      * @runInSeparateProcess
      */
-    public function test_get_contexts_for_userid() {
+    public function test_get_contexts_for_userid(): void {
         global $CFG, $DB;
         require_once($CFG->dirroot . '/local/soccerteam/classes/privacy/provider.php');
-        
         $this->resetAfterTest();
-        
-        // Create test data.
         $course1 = $this->getDataGenerator()->create_course();
         $course2 = $this->getDataGenerator()->create_course();
         $user1 = $this->getDataGenerator()->create_user();
         $user2 = $this->getDataGenerator()->create_user();
-        
         // Create some player records.
         $generator = $this->getDataGenerator()->get_plugin_generator('local_soccerteam');
-        
         // User1 in course1.
         $generator->create_player([
             'courseid' => $course1->id,
@@ -98,7 +86,6 @@ class provider_test extends \core_privacy\tests\provider_testcase {
             'position' => 'Forward',
             'jerseynumber' => 10,
         ]);
-        
         // User1 in course2.
         $generator->create_player([
             'courseid' => $course2->id,
@@ -106,7 +93,6 @@ class provider_test extends \core_privacy\tests\provider_testcase {
             'position' => 'Midfielder',
             'jerseynumber' => 8,
         ]);
-        
         // User2 in course1.
         $generator->create_player([
             'courseid' => $course1->id,
@@ -114,53 +100,39 @@ class provider_test extends \core_privacy\tests\provider_testcase {
             'position' => 'Goalkeeper',
             'jerseynumber' => 1,
         ]);
-        
         // Get contexts for user1.
         $contextlist = provider::get_contexts_for_userid($user1->id);
-        
         // Check that we have two contexts.
         $this->assertCount(2, $contextlist);
-        
         // Convert to array for easier assertions.
         $contexts = $contextlist->get_contextids();
-        
         // Check that the contexts match the courses.
         $context1id = \context_course::instance($course1->id)->id;
         $context2id = \context_course::instance($course2->id)->id;
-        
-        // Instead of using assertContains, check if the values are in the array directly
+        // Instead of using assertContains, check if the values are in the array directly.
         $this->assertTrue(in_array($context1id, $contexts), "Context 1 ID not found in context list");
         $this->assertTrue(in_array($context2id, $contexts), "Context 2 ID not found in context list");
-        
         // Get contexts for user2.
         $contextlist = provider::get_contexts_for_userid($user2->id);
-        
-        // Check that we have one context.
         $this->assertCount(1, $contextlist);
-        
-        // Convert to array for easier assertions.
         $contexts = $contextlist->get_contextids();
-        
-        // Check that the context matches the course.
         $this->assertTrue(in_array($context1id, $contexts), "Context 1 ID not found in context list for user2");
         $this->assertFalse(in_array($context2id, $contexts), "Context 2 ID should not be in context list for user2");
     }
 
     /**
      * Test for provider::export_user_data()
+     * @covers :: export user data
      * @runInSeparateProcess
      */
-    public function test_export_user_data() {
+    public function test_export_user_data(): void {
         global $CFG;
         require_once($CFG->dirroot . '/local/soccerteam/classes/privacy/provider.php');
-        
         $this->resetAfterTest();
-        
         // Create test data.
         $course = $this->getDataGenerator()->create_course();
         $user = $this->getDataGenerator()->create_user();
         $context = \context_course::instance($course->id);
-        
         // Create a player record.
         $generator = $this->getDataGenerator()->get_plugin_generator('local_soccerteam');
         $generator->create_player([
@@ -169,16 +141,11 @@ class provider_test extends \core_privacy\tests\provider_testcase {
             'position' => 'Forward',
             'jerseynumber' => 10,
         ]);
-        
         // Export the data for the user.
         $approvedlist = new approved_contextlist($user, 'local_soccerteam', [$context->id]);
         provider::export_user_data($approvedlist);
-        
-        // Get the exported data.
         $writer = writer::with_context($context);
         $data = $writer->get_data([get_string('pluginname', 'local_soccerteam')]);
-        
-        // Check that the data is correct.
         $this->assertNotEmpty($data);
         $this->assertEquals('Forward', $data->position);
         $this->assertEquals(10, $data->jerseynumber);
@@ -186,105 +153,83 @@ class provider_test extends \core_privacy\tests\provider_testcase {
 
     /**
      * Test for provider::delete_data_for_all_users_in_context()
+     * @covers :: delete data for all users in context
      * @runInSeparateProcess
      */
-    public function test_delete_data_for_all_users_in_context() {
+    public function test_delete_data_for_all_users_in_context(): void {
         global $DB, $CFG;
         require_once($CFG->dirroot . '/local/soccerteam/classes/privacy/provider.php');
-        
         $this->resetAfterTest();
-        
         // Create test data.
         $course1 = $this->getDataGenerator()->create_course();
         $course2 = $this->getDataGenerator()->create_course();
         $user1 = $this->getDataGenerator()->create_user();
         $user2 = $this->getDataGenerator()->create_user();
-        
         // Create some player records.
         $generator = $this->getDataGenerator()->get_plugin_generator('local_soccerteam');
-        
         // User1 in course1.
         $generator->create_player([
             'courseid' => $course1->id,
             'userid' => $user1->id,
         ]);
-        
         // User2 in course1.
         $generator->create_player([
             'courseid' => $course1->id,
             'userid' => $user2->id,
         ]);
-        
         // User1 in course2.
         $generator->create_player([
             'courseid' => $course2->id,
             'userid' => $user1->id,
         ]);
-        
         // Check that we have 3 records.
         $this->assertEquals(3, $DB->count_records('local_soccerteam'));
-        
         // Delete all data for course1.
         $context = \context_course::instance($course1->id);
         provider::delete_data_for_all_users_in_context($context);
-        
         // Check that we now have 1 record.
         $this->assertEquals(1, $DB->count_records('local_soccerteam'));
-        
         // Check that the remaining record is for course2.
         $this->assertEquals(1, $DB->count_records('local_soccerteam', ['courseid' => $course2->id]));
     }
 
     /**
      * Test for provider::delete_data_for_user()
+     * @covers :: delete_data_for_user()
      * @runInSeparateProcess
      */
-    public function test_delete_data_for_user() {
+    public function test_delete_data_for_user(): void {
         global $DB, $CFG;
         require_once($CFG->dirroot . '/local/soccerteam/classes/privacy/provider.php');
-        
         $this->resetAfterTest();
-        
         // Create test data.
         $course1 = $this->getDataGenerator()->create_course();
         $course2 = $this->getDataGenerator()->create_course();
         $user1 = $this->getDataGenerator()->create_user();
         $user2 = $this->getDataGenerator()->create_user();
-        
         // Create some player records.
         $generator = $this->getDataGenerator()->get_plugin_generator('local_soccerteam');
-        
         // User1 in course1.
         $generator->create_player([
             'courseid' => $course1->id,
             'userid' => $user1->id,
         ]);
-        
         // User2 in course1.
         $generator->create_player([
             'courseid' => $course1->id,
             'userid' => $user2->id,
         ]);
-        
         // User1 in course2.
         $generator->create_player([
             'courseid' => $course2->id,
             'userid' => $user1->id,
         ]);
-        
-        // Check that we have 3 records.
         $this->assertEquals(3, $DB->count_records('local_soccerteam'));
-        
-        // Delete all data for user1.
         $context1 = \context_course::instance($course1->id);
         $context2 = \context_course::instance($course2->id);
         $approvedlist = new approved_contextlist($user1, 'local_soccerteam', [$context1->id, $context2->id]);
         provider::delete_data_for_user($approvedlist);
-        
-        // Check that we now have 1 record.
         $this->assertEquals(1, $DB->count_records('local_soccerteam'));
-        
-        // Check that the remaining record is for user2.
         $this->assertEquals(1, $DB->count_records('local_soccerteam', ['userid' => $user2->id]));
     }
-} 
+}

@@ -15,15 +15,25 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Upgrade script for local_soccerteam plugin
  *
- * @package   local_soccerteam
- * @copyright 2025 Umme Kawser Sinthia
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_soccerteam
+ * @copyright  2025 Umme Kawser Sinthia
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+/**
+ * Execute local_soccerteam upgrade steps between versions
+ *
+ * @param int $oldversion the version we are upgrading from
+ * @return bool always true
+ */
+function xmldb_local_soccerteam_upgrade ($oldversion) {
+    global $DB;
 
-$plugin->version   = 2025072514;         // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2024041600;         // Requires this Moodle version.
-$plugin->component = 'local_soccerteam'; // Full name of the plugin (used for diagnostics).
+    $dbman = $DB->get_manager();
+
+    // Upgrade steps.
+
+    return true;
+}

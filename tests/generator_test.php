@@ -25,8 +25,6 @@
 
 namespace local_soccerteam;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Generator test case
  *
@@ -35,10 +33,11 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2025 Umme Kawser Sinthia
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class generator_test extends \advanced_testcase {
+final class generator_test extends \advanced_testcase {
 
     /**
      * Test creating player records
+     * @covers :: create_player
      * @runInSeparateProcess
      */
     public function test_create_player(): void {
@@ -48,20 +47,16 @@ class generator_test extends \advanced_testcase {
 
         // Create a course.
         $course = $this->getDataGenerator()->create_course();
-        
         // Create users.
         $user1 = $this->getDataGenerator()->create_user();
         $user2 = $this->getDataGenerator()->create_user();
-        
         // Get the generator.
         $generator = $this->getDataGenerator()->get_plugin_generator('local_soccerteam');
-        
         // Create a player with default values.
         $player1id = $generator->create_player([
             'courseid' => $course->id,
             'userid' => $user1->id,
         ]);
-        
         // Verify the player was created.
         $player1 = $DB->get_record('local_soccerteam', ['id' => $player1id]);
         $this->assertNotFalse($player1);
@@ -69,7 +64,6 @@ class generator_test extends \advanced_testcase {
         $this->assertEquals($user1->id, $player1->userid);
         $this->assertEquals('Forward', $player1->position); // Default position.
         $this->assertEquals(1, $player1->jerseynumber); // Default jersey number.
-        
         // Create a player with specific values.
         $player2id = $generator->create_player([
             'courseid' => $course->id,
@@ -77,7 +71,6 @@ class generator_test extends \advanced_testcase {
             'position' => 'Goalkeeper',
             'jerseynumber' => 10,
         ]);
-        
         // Verify the player was created with the specified values.
         $player2 = $DB->get_record('local_soccerteam', ['id' => $player2id]);
         $this->assertNotFalse($player2);
@@ -85,17 +78,15 @@ class generator_test extends \advanced_testcase {
         $this->assertEquals($user2->id, $player2->userid);
         $this->assertEquals('Goalkeeper', $player2->position);
         $this->assertEquals(10, $player2->jerseynumber);
-        
         // Create another player with default jersey number (should be 2 since 1 is taken).
         $user3 = $this->getDataGenerator()->create_user();
         $player3id = $generator->create_player([
             'courseid' => $course->id,
             'userid' => $user3->id,
         ]);
-        
         // Verify the player was created with the next available jersey number.
         $player3 = $DB->get_record('local_soccerteam', ['id' => $player3id]);
         $this->assertNotFalse($player3);
         $this->assertEquals(2, $player3->jerseynumber);
     }
-} 
+}

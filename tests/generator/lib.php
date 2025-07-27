@@ -23,7 +23,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Data generator class for the local_soccerteam plugin.
@@ -72,4 +71,4 @@ class local_soccerteam_generator extends component_generator_base {
 
         return $DB->insert_record('local_soccerteam', $record);
     }
-} 
+}
