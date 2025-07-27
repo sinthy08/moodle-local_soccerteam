@@ -40,11 +40,11 @@ You can download from [GitHub](https://github.com/sinthy08/moodle-local_soccerte
 ## Usages
 After installing the plugin, you can see a new option in your course secondary navigation menu 'Soccer team'
 
-<img width="1097" height="525" alt="Image" src="https://github.com/user-attachments/assets/ec535c84-c711-4a52-b245-17ebda1eb340" />
+<img width="829" height="395" alt="Image" src="https://github.com/user-attachments/assets/576f110d-1c2f-4cf1-b181-a61c4e0d7f4c" />
 
 Clicking on the navigation it'll lead you to the page where you can assign course's students a soccer position and jersey number.
 
-<img width="1097" height="525" alt="Image" src="https://github.com/user-attachments/assets/7b302376-dc4a-4eb9-9e85-338e78aead65" />
+<img width="1008" height="483" alt="Image" src="https://github.com/user-attachments/assets/b5f111d8-72c1-4ffc-b0dd-66cc1588c01b" />
 
 - Choose a student
 - Choose a position
